@@ -10,7 +10,10 @@ const fileController = require("../controllers/fileController");
 const imageController = require("../controllers/imageController");
 
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+
+// ✅ Use memory storage instead of disk storage (Vercel-safe)
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // Analysis routes (no authentication required)
 router.post("/text", textController.analyzeText);
